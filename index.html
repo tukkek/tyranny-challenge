@@ -1,0 +1,20 @@
+<title>Tyranny challenge</title>
+
+<link rel='stylesheet' href='style.css'>
+<meta charset='utf8'>
+
+<div id='clauses'>
+  <template id='clause'><div><strong></strong>: <span></span>.</div></template>
+</div>
+
+<div id='party'>
+  <strong>In party?</strong>
+  <template id='hero'><label><input type='checkbox'><span class='name'></span></label></template>
+  <strong id='priority'>Priority</strong>
+</div>
+
+<script type='module'>
+  import * as challenge from './script/challenge.js'
+  
+  challenge.setup()
+</script>
