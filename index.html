@@ -2,6 +2,10 @@
 
 <link rel='stylesheet' href='style.css'>
 <meta charset='utf8'>
+<script src="//cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+
+<div><a id='new'>Generate new challenge</a></div>
+<div><a id='permalink'>Permalink to this challenge</a></div>
 
 <div id='clauses'>
   <template id='clause'><div><strong></strong>: <span></span>.</div></template>
@@ -13,10 +17,10 @@
   <strong id='priority'>Priority</strong>
 </div>
 
-<p><em>(Reload page to reroll parameters).</em></p>
-
 <script type='module'>
   import * as challenge from './script/challenge.js'
+  import * as rpg from './script/rpg.js'
   
+  rpg.setup()
   challenge.setup()
 </script>
