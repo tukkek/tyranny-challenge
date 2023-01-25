@@ -1,4 +1,5 @@
 import * as rpg from './rpg.js'
+import * as background from './background.js'
 
 const ALLIES=['Disfavored','none','Scarlet Chorus','rebels']
 const HEROES=['Verse','Barik','Lantry','Eb','Sirin','Kills-in-shadow']
@@ -7,21 +8,6 @@ const PARTY=document.querySelector('#party')
 const PRIORITY=document.querySelector('#priority')
 const CLAUSE=document.querySelector('template#clause').content.children[0]
 const CLAUSES=document.querySelector('#clauses')
-const BACKGROUNDS=['Pit fighter','Hunter','Guild apprentice','Noble scion','Soldier','Lawbreaker','War mage','Diplomat']
-const RANGED=['Heart shot','Hobble']
-const MAGIC=['Charged strike','Energy shield']
-const EXPERTISE={
-  'Sword and shield':['Shield slam','Sunder'],
-  'Greatsword':['Sunder','Cleave'],
-  'Dual-wielding':['Flurry of blows','Slice'],
-  'Unarmed attacks':['Flurry of blows','Palm strike'],
-  'Shortbow':RANGED,
-  'Javelin':RANGED,
-  'Shock spells':MAGIC,
-  'Frost spells':MAGIC,
-  'Vigor spells':MAGIC,
-  'Atrophy spells':MAGIC,
-}
 
 function update(){
   for(let s of Array.from(PARTY.querySelectorAll('.priority')))
@@ -43,15 +29,11 @@ function add(clause,value){
   CLAUSES.appendChild(c)
 }
 
-function specialize(){
-  let e=rpg.pick(Object.keys(EXPERTISE))
-  return `${e} (${rpg.pick(EXPERTISE[e])})`
-}
-
 export function setup(){
-  add('History',rpg.pick(BACKGROUNDS))
-  add('Primary expertise',specialize())
-  add('Secondary expertise',specialize())
+  let b=background.live()
+  add('History',b[0])
+  add('Primary expertise',b[1])
+  add('Secondary expertise',b[2])
   add('Alliance',rpg.pick(ALLIES))
   for(let h of HEROES){
     let control=HERO.cloneNode(true)
