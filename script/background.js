@@ -51,7 +51,7 @@ var backgrounds=[
   new Background('Lawbreaker',[JAVELIN]),
   new Background('Pit fighter',[DUAL,UNARMED]),
   new Background('War mage',MAGIC,[SWORD,JAVELIN]),
-  new Background('Diplomat',MAGIC,MAGIC)
+  new Background('Diplomat',MAGIC,MAGIC),
   new Background('Guild apprentice',MAGIC),
 ]
 
