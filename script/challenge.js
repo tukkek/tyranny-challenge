@@ -2,7 +2,8 @@ import * as rpg from './rpg.js'
 import * as background from './background.js'
 
 const ALLIES=['Disfavored','none','Scarlet Chorus','rebels']
-const HEROES=['Verse','Barik','Lantry','Eb','Sirin','Kills-in-shadow']
+const LANTRY='Lantry'
+const HEROES=['Verse','Barik',LANTRY,'Eb','Sirin','Kills-in-shadow']
 const HERO=document.querySelector('template#hero').content.children[0]
 const PARTY=document.querySelector('#party')
 const PRIORITY=document.querySelector('#priority')
@@ -35,11 +36,14 @@ export function setup(){
   add('Primary expertise',b[1])
   add('Secondary expertise',b[2])
   add('Alliance',rpg.pick(ALLIES))
-  for(let h of HEROES){
+  for(let i=0;i<HEROES.length;i++){
+    let h=HEROES[i]
     let control=HERO.cloneNode(true)
     control.querySelector('.name').textContent=h
     control.onchange=update
     control.setAttribute('hero',h)
+    if(i<=HEROES.indexOf(LANTRY))
+      control.querySelector('input').checked=true
     PARTY.insertBefore(control,PRIORITY)
   }
   rpg.shuffle(HEROES)
