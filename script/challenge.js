@@ -1,5 +1,6 @@
 import * as rpg from './rpg.js'
 import * as background from './background.js'
+import * as name from './name.js'
 
 const ALLIES=['Disfavored','none','Scarlet Chorus','rebels']
 const LANTRY='Lantry'
@@ -30,8 +31,13 @@ function add(clause,value){
   CLAUSES.appendChild(c)
 }
 
-export function setup(){
+export async function setup(){
+  await name.setup()
+  rpg.setup()
   let b=background.live()
+  let n=rpg.seed
+  n=n[0].toUpperCase()+n.slice(1)
+  add('Name',n)
   add('History',b[0])
   add('Primary expertise',b[1])
   add('Secondary expertise',b[2])

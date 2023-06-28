@@ -1,6 +1,6 @@
-const LOCATION=new URL(document.location)
+import * as name from './name.js'
 
-export var seed=LOCATION.searchParams.get('seed')||Date.now()
+export var seed=''
 
 export function roll(min,max){return Math.floor(Math.random()*(max-min+1))+min}
 
@@ -19,10 +19,11 @@ export function shuffle(array){
 }
 
 export function setup(){
+  let l=new URL(document.location)
+  seed=l.searchParams.get('seed')||pick(name.names).toLowerCase()
   Math.seedrandom(seed.toString())
-  let u=LOCATION
-  u.searchParams.set('seed',seed)
-  document.querySelector('#permalink').href=u
-  u.searchParams.delete('seed')
-  document.querySelector('#new').href=u
+  l.searchParams.set('seed',seed)
+  document.querySelector('#permalink').href=l
+  l.searchParams.delete('seed')
+  document.querySelector('#new').href=l
 }
